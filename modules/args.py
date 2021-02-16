@@ -46,6 +46,10 @@ class Arguments:
                             help='exclude all the words included in other wordlists '
                                  '(several wordlists should be comma-separated)')
 
+        parser.add_argument('-s', '--session', action="store", metavar='', type=str,
+                            dest='session', default=False,
+                            help='stores the progress to session file ')
+
         parser.add_argument('-o', '--output', action="store", metavar='', type=str,
                             dest='outfile', default=self.DEFAULT_OUTPUT_FILE,
                             help='output file to save the wordlist (default: {})'.format(self.DEFAULT_OUTPUT_FILE))
@@ -187,3 +191,19 @@ class Arguments:
                     sys.exit(4)
         if self.artists:
             self.artists = self.artists.split(',')
+        self.session = self.args.session
+
+    def toJSON(self):
+        data = {
+            "base_wordlist" : self.base_wordlist,
+            "min_length" : self.min_length,
+            "max_length" :  self.max_length ,
+            "leet" :  self.leet ,
+            "case" :  self.case,
+            "n_words" :  self.n_words,
+            "artists" :   self.artists,
+            "outfile" :  self.outfile,
+            "exclude_wordlists" : self.exclude_wordlists,
+            "artists" : self.artists
+        }
+        return data

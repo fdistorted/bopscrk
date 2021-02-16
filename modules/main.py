@@ -12,6 +12,7 @@ from modules.color import color
 from modules.transforms import leet_transforms, case_transforms, artist_space_transforms, lyric_space_transforms, multithread_transforms, take_initials
 from modules.combinators import combinator, add_common_separators
 from modules.excluders import remove_by_lengths, remove_duplicates, multithread_exclude
+from modules.session import Session
 
 
 def run():
@@ -35,6 +36,12 @@ def run():
 
         # Initial timestamp
         start_time = datetime.datetime.now().time().strftime('%H:%M:%S')
+
+        if args.session:
+            print("session parameter exists")
+            session = Session(args.session,args)
+            print("session created. Session stage is {}".format(session.STAGE))
+            
 
         # Inserting original values into final_wordlist
         base_wordlist = args.base_wordlist
@@ -104,7 +111,6 @@ def run():
                 final_wordlist += combinator(base_wordlist, i)
                 print('  {}[*]{} Combining {} words using {} words (words produced: {})...'.format(color.CYAN,color.END,len(base_wordlist),i, len(final_wordlist)))
                 #print('\n')
-
 
 
         # WORD COMBINATIONS (WITH COMMON SEPARATORS)

@@ -1,0 +1,1 @@
+{"args": {"base_wordlist": ["test", " 123", " hello"], "min_length": 2, "max_length": 5, "leet": false, "case": false, "n_words": 2, "artists": false, "outfile": "tmp.txt", "exclude_wordlists": false}, "stage": 0, "start_time": "15/02/2021 10:02:20"}
